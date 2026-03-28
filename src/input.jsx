@@ -1,32 +1,30 @@
-import { useState } from "react";
+import { useRef } from "react";
 
 export default function Input({ btnClicked }) {
-  const [todoName, setTodoName] = useState("");
-  const [dueDate, setDueDate] = useState("");
+  const todoName = useRef();
+  const dueDate = useRef();
 
-  const handleNameChange = (e) => {
-    setTodoName(e.target.value);
-  };
-  const handleDateChange = (e) => {
-    setDueDate(e.target.value);
-  };
-  const handleAddBtnClick = () => {
-    btnClicked(todoName, dueDate);
-    setTodoName("");
-    setDueDate("");
+  const handleAddBtnClick = (event) => {
+    event.preventDefault();
+
+    const todoNameVal = todoName.current.value;
+    const dueDateVal = dueDate.current.value;
+    btnClicked(todoNameVal, dueDateVal);
+
+    todoName.current.value = "";
+    dueDate.current.value = "";
   };
 
   return (
     <>
       <div className="container text-center">
-        <div className="row my-3">
+        <form className="row my-3" onSubmit={handleAddBtnClick}>
           <div className="col-5 ">
             <input
               type="text"
               placeholder="Enter todo here"
               className="form-control"
-              value={todoName}
-              onChange={handleNameChange}
+              ref={todoName}
             />
           </div>
           <div className="col-5">
@@ -35,20 +33,15 @@ export default function Input({ btnClicked }) {
               name=""
               id=""
               className="form-control"
-              value={dueDate}
-              onChange={handleDateChange}
+              ref={dueDate}
             />
           </div>
           <div className="col-2 d-flex">
-            <button
-              type="button"
-              className="btn btn-primary flex-grow-1"
-              onClick={handleAddBtnClick}
-            >
+            <button type="submit" className="btn btn-primary flex-grow-1">
               Add
             </button>
           </div>
-        </div>
+        </form>
       </div>
     </>
   );
