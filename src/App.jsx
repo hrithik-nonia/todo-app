@@ -11,13 +11,13 @@ export default function App() {
     if (todoName.trim() === "" || dueDate.trim() === "") {
       return;
     }
-    setTodoArr([
-      ...todoArr,
-      {
-        task: todoName,
-        date: dueDate,
-      },
-    ]);
+    setTodoArr((currentTodoItem) => {
+      const newTodoItem = [
+        ...currentTodoItem,
+        { task: todoName, date: dueDate },
+      ];
+      return newTodoItem;
+    });
   };
 
   const handleDeleteBtn = (item) => {
