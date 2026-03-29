@@ -1,7 +1,8 @@
 import { TodoItemContext } from "./store/store";
 import { useContext } from "react";
 export default function Msg() {
-  const todoItemFromContext = useContext(TodoItemContext);
+  const todoItemFromContextObj = useContext(TodoItemContext);
+  const todoItemFromContext = todoItemFromContextObj.todoArr;
   return (
     <>
       {todoItemFromContext.length === 0 && (

@@ -1,8 +1,11 @@
 import { useRef } from "react";
+import { useContext } from "react";
+import { TodoItemContext } from "./store/store";
 
-export default function Input({ btnClicked }) {
+export default function Input() {
   const todoName = useRef();
   const dueDate = useRef();
+  const { btnClicked } = useContext(TodoItemContext);
 
   const handleAddBtnClick = (event) => {
     event.preventDefault();

@@ -27,11 +27,17 @@ export default function App() {
 
   return (
     <>
-      <TodoItemContext.Provider value={todoArr}>
+      <TodoItemContext.Provider
+        value={{
+          todoArr: todoArr,
+          handleDeleteBtn,
+          btnClicked,
+        }}
+      >
         <Head></Head>
-        <Input btnClicked={btnClicked}></Input>
+        <Input></Input>
         <Msg></Msg>
-        <Card handleDeleteBtn={handleDeleteBtn}></Card>
+        <Card></Card>
       </TodoItemContext.Provider>
     </>
   );

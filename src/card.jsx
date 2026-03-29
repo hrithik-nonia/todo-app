@@ -1,7 +1,9 @@
 import { useContext } from "react";
 import { TodoItemContext } from "./store/store";
-export default function Card({ handleDeleteBtn }) {
-  const todoArrFromContext = useContext(TodoItemContext);
+export default function Card() {
+  const todoArrFromContextObj = useContext(TodoItemContext);
+  const todoArrFromContext = todoArrFromContextObj.todoArr;
+  const { handleDeleteBtn } = useContext(TodoItemContext);
   return (
     <>
       <div className="container text-center">
