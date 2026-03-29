@@ -1,8 +1,11 @@
-export default function Card({ task, handleDeleteBtn }) {
+import { useContext } from "react";
+import { TodoItemContext } from "./store/store";
+export default function Card({ handleDeleteBtn }) {
+  const todoArrFromContext = useContext(TodoItemContext);
   return (
     <>
       <div className="container text-center">
-        {task.map((item, index) => (
+        {todoArrFromContext.map((item, index) => (
           <div className="row my-3" key={index}>
             <div className="col-5 ">
               <p>{item.task}</p>

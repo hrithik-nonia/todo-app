@@ -3,6 +3,7 @@ import Card from "./card";
 import Head from "./head";
 import Input from "./input";
 import Msg from "./welcome-msg";
+import { TodoItemContext } from "./store/store";
 
 export default function App() {
   let [todoArr, setTodoArr] = useState([]);
@@ -23,12 +24,15 @@ export default function App() {
   const handleDeleteBtn = (item) => {
     setTodoArr(todoArr.filter((todo) => todo !== item));
   };
+
   return (
     <>
-      <Head></Head>
-      <Input btnClicked={btnClicked}></Input>
-      {todoArr.length === 0 && <Msg></Msg>}
-      <Card task={todoArr} handleDeleteBtn={handleDeleteBtn}></Card>
+      <TodoItemContext.Provider value={todoArr}>
+        <Head></Head>
+        <Input btnClicked={btnClicked}></Input>
+        <Msg></Msg>
+        <Card handleDeleteBtn={handleDeleteBtn}></Card>
+      </TodoItemContext.Provider>
     </>
   );
 }
